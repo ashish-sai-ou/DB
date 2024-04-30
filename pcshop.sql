@@ -10,13 +10,12 @@
 
 CREATE TABLE IF NOT EXISTS customers (
   customer_id char(10) NOT NULL,
-  firstname varchar(32) default NULL,
-  lastname varchar(32) default NULL,
-  city varchar(32) default NULL,
-  address varchar(128) default NULL,
-  email varchar(128) default NULL,
-  PRIMARY KEY  (customer_id),
-  UNIQUE KEY email (email)
+  firstname varchar(32) DEFAULT NULL,
+  lastname varchar(32) DEFAULT NULL,
+  city varchar(32) DEFAULT NULL,
+  address varchar(128) DEFAULT NULL,
+  email varchar(128) DEFAULT NULL UNIQUE,
+  PRIMARY KEY (customer_id)
 );
 
 --
@@ -24,11 +23,11 @@ CREATE TABLE IF NOT EXISTS customers (
 --
 
 INSERT INTO customers (customer_id, firstname, lastname, city, address, email) VALUES
-('1122334455', 'Ann', 'O''Brien', 'Dublin', '1 Jervis St.', 'aob@ul.ie'),
-('1231231231', 'John', 'Doe', 'Limerick', NULL, NULL),
-('1234567890', 'Paul', 'Murphy', 'Cork', '20 O''Connell St.', NULL),
-('9876543210', 'Jack', 'Murphy', 'Galway', '101 O''Connell St.', 'jm@ul.ie'),
-('9999999999', 'Norah', 'Jones', 'Limerick', '2 Thomas St.', 'nj@yahoo.com');
+('NL11223344', 'Eva', 'Janssen', 'Maastricht', 'Vrijthof 9', 'eva.j@maashop.nl'),
+('NL22334455', 'Lucas', 'van Dam', 'Heerlen', 'Geleenstraat 12', 'lucas.vd@limburgnet.nl'),
+('NL33445566', 'Sophie', 'Peeters', 'Sittard', 'Markt 22', 'sophie.p@sittardmail.nl'),
+('NL44556677', 'Bram', 'Kuijpers', 'Venlo', 'Parade 33', 'bramk@venlopost.nl'),
+('NL55667788', 'Fleur', 'Hoekstra', 'Kerkrade', 'Kerkplein 44', 'fleur.h@zuidlimburgmail.nl');
 
 -- --------------------------------------------------------
 
@@ -37,13 +36,13 @@ INSERT INTO customers (customer_id, firstname, lastname, city, address, email) V
 --
 
 CREATE TABLE IF NOT EXISTS laptops (
-  model char(4) NOT NULL default '',
-  speed double default NULL,
-  ram int(11) default NULL,
-  hd int(11) default NULL,
-  screen double default NULL,
-  price double default NULL,
-  PRIMARY KEY  (model)
+  model char(4) NOT NULL DEFAULT '',
+  speed double DEFAULT NULL,
+  ram int(11) DEFAULT NULL,
+  hd int(11) DEFAULT NULL,
+  screen double DEFAULT NULL,
+  price double DEFAULT NULL,
+  PRIMARY KEY (model)
 );
 
 --
@@ -74,7 +73,7 @@ CREATE TABLE IF NOT EXISTS pcs (
   ram int(11) NOT NULL,
   hd int(11) NOT NULL,
   price double NOT NULL,
-  PRIMARY KEY  (model)
+  PRIMARY KEY (model)
 );
 
 --
@@ -103,11 +102,11 @@ INSERT INTO pcs (model, speed, ram, hd, price) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS printers (
-  model char(4) NOT NULL default '',
-  color varchar(5) default NULL,
-  `type` varchar(10) default NULL,
-  price double default NULL,
-  PRIMARY KEY  (model)
+  model char(4) NOT NULL DEFAULT '',
+  color varchar(5) DEFAULT NULL,
+  `type` varchar(10) DEFAULT NULL,
+  price double DEFAULT NULL,
+  PRIMARY KEY (model)
 );
 
 --
@@ -130,10 +129,10 @@ INSERT INTO printers (model, color, `type`, price) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS products (
-  maker char(1) default NULL,
-  model char(4) NOT NULL default '',
-  `type` varchar(10) default NULL,
-  PRIMARY KEY  (model)
+  maker char(1) DEFAULT NULL,
+  model char(4) NOT NULL DEFAULT '',
+  `type` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (model)
 );
 
 --
@@ -179,13 +178,13 @@ INSERT INTO products (maker, model, `type`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS sales (
-  customer_id char(10) NOT NULL default '',
-  model char(4) NOT NULL default '',
-  quantity int(11) default NULL,
-  `day` date NOT NULL default '2010-01-01',
-  paid double default NULL,
-  type_of_payment varchar(32) default NULL,
-  PRIMARY KEY  (customer_id,model,`day`)
+  customer_id char(10) NOT NULL DEFAULT '',
+  model char(4) NOT NULL DEFAULT '',
+  quantity int(11) DEFAULT NULL,
+  `day` date NOT NULL DEFAULT '0000-00-00',
+  paid double DEFAULT NULL,
+  type_of_payment varchar(32) DEFAULT NULL,
+  PRIMARY KEY (customer_id,model,`day`)
 );
 
 --
@@ -193,13 +192,13 @@ CREATE TABLE IF NOT EXISTS sales (
 --
 
 INSERT INTO sales (customer_id, model, quantity, `day`, paid, type_of_payment) VALUES
-('1122334455', '2010', 1, '2013-12-19', 2300, 'mastercard credit'),
-('1122334455', '3001', 1, '2013-12-18', 99, 'cash'),
-('1231231231', '2002', 2, '2013-12-19', 1898, 'visa credit'),
-('1231231231', '3002', 1, '2013-12-18', 239, 'cash'),
-('1234567890', '1001', 1, '2013-12-20', 1902.6, 'mastercard credit'),
-('9876543210', '1007', 1, '2013-12-17', 510, 'visa debit'),
-('9876543210', '1007', 3, '2013-12-19', 1530, 'visa debit'),
-('9876543210', '2002', 1, '2013-12-17', 949, 'visa debit'),
-('9999999999', '1007', 1, '2013-12-20', 459, 'visa credit'),
-('9999999999', '3007', 2, '2013-12-20', 360, 'visa credit');
+('NL11223344', '2010', 1, '2023-03-19', 2300, 'mastercard credit'),
+('NL11223344', '3001', 1, '2023-03-18', 99, 'cash'),
+('NL22334455', '2002', 2, '2023-03-19', 1898, 'visa credit'),
+('NL22334455', '3002', 1, '2023-03-18', 239, 'cash'),
+('NL33445566', '1001', 1, '2023-03-20', 1902.6, 'mastercard credit'),
+('NL44556677', '1007', 1, '2023-03-17', 510, 'visa debit'),
+('NL44556677', '1007', 3, '2023-03-19', 1530, 'visa debit'),
+('NL44556677', '2002', 1, '2023-03-17', 949, 'visa debit'),
+('NL55667788', '1007', 1, '2023-03-20', 459, 'visa credit'),
+('NL55667788', '3007', 2, '2023-03-20', 360, 'visa credit');
